@@ -1,0 +1,4 @@
+transformers
+torch
+pytz
+accelerate>=0.26.0
