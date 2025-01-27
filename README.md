@@ -15,10 +15,12 @@ source /path/to/.venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Log into the huggingface hub to get the weights:
+Set necessary env variables or make necessary .env file:
 
 ```
-huggingface-cli login
+export WATSONX_APIKEY=.....
+export WATSONX_URL=.....
+export WATSONX_PROJECT_ID=.....
 ```
 
 Then run the python script!

@@ -1,5 +1,5 @@
 ---
 batch_size: 1
-model_name: meta-llama/Llama-3.1-405B-Instruct
+model_name: meta-llama/llama-3-405b-instruct
 path_to_prompts: prompts/onto.test.core-roles-only-all-args-per-prompt.pkl
 max_length: 3000

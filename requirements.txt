@@ -2,3 +2,6 @@ transformers
 torch
 pytz
 accelerate>=0.26.0
+langchain
+langchain-ibm
+python-dotenv
