@@ -78,8 +78,12 @@ for config_path in config_paths:
     results_dict['config']['max_length'] = MAX_LENGTH
     for prompt_id in tqdm(prompt_contexts_by_id.keys(), desc='Running prompts', total=len(prompt_contexts_by_id)):
         prompt = prompt_contexts_by_id[prompt_id]
-            
-        model_output = chat.invoke(prompt)
+        
+        try:
+            model_output = chat.invoke(prompt)
+        except Exception as e:
+            model_output = str(e)
+            logger.error(f'Error with prompt {prompt_id}: {model_output}')
 
         results_dict[prompt_id]['clean_output'] = model_output
 
