@@ -83,14 +83,13 @@ for config_path in config_paths:
         
         try:
             model_output = chat.invoke(prompt)
+            results_dict[prompt_id]['clean_output'] = model_output.content
         except Exception as e:
             model_output = str(e)
             logger.error(f'Error with prompt {prompt_id}: {model_output}')
-
-        results_dict[prompt_id]['clean_output'] = model_output.content
+            results_dict[prompt_id]['clean_output'] = model_output
 
         # Save intermediate results
-
         i += 1
         results_dict['batch_progress'] = i
         with open(f'experiments/{TODAYS_DATE}-{model_name_for_saving}-intermediate.json', 'w') as fp:
