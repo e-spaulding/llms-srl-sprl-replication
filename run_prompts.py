@@ -87,7 +87,9 @@ for config_path in config_paths:
             model_output = str(e)
             logger.error(f'Error with prompt {prompt_id}: {model_output}')
 
-        results_dict[prompt_id]['clean_output'] = model_output
+        results_dict[prompt_id]['clean_output'] = model_output.content
+
+        # Save intermediate results
 
         i += 1
         results_dict['batch_progress'] = i
