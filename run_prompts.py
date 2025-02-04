@@ -76,6 +76,8 @@ for config_path in config_paths:
     results_dict = {id_: {'prompt': prompt_contexts_by_id[id_], 'clean_output': '', 'full_output': ''} for id_ in prompt_contexts_by_id.keys()}
     results_dict['config'] = {}
     results_dict['config']['max_length'] = MAX_LENGTH
+
+    i = 0
     for prompt_id in tqdm(prompt_contexts_by_id.keys(), desc='Running prompts', total=len(prompt_contexts_by_id)):
         prompt = prompt_contexts_by_id[prompt_id]
         
@@ -86,6 +88,14 @@ for config_path in config_paths:
             logger.error(f'Error with prompt {prompt_id}: {model_output}')
 
         results_dict[prompt_id]['clean_output'] = model_output
+
+        i += 1
+
+        if i % 20 == 0:
+            # save output every 20 prompts
+            results_dict['batch_progress'] = i
+            with open(f'experiments/{TODAYS_DATE}-{model_name_for_saving}-intermediate.json', 'w') as fp:
+                json.dump(results_dict, fp, indent=2)
 
     t_1 = process_time()
     # save results
