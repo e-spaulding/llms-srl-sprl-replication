@@ -90,12 +90,9 @@ for config_path in config_paths:
         results_dict[prompt_id]['clean_output'] = model_output
 
         i += 1
-
-        if i % 20 == 0:
-            # save output every 20 prompts
-            results_dict['batch_progress'] = i
-            with open(f'experiments/{TODAYS_DATE}-{model_name_for_saving}-intermediate.json', 'w') as fp:
-                json.dump(results_dict, fp, indent=2)
+        results_dict['batch_progress'] = i
+        with open(f'experiments/{TODAYS_DATE}-{model_name_for_saving}-intermediate.json', 'w') as fp:
+            json.dump(results_dict, fp, indent=2)
 
     t_1 = process_time()
     # save results
